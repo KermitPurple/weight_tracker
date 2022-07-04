@@ -52,17 +52,18 @@ class WeightTracker:
     def show_graph(self):
         '''Show the graph of entries'''
         data = list(sorted(self.data.items(), key = lambda t: t[0]))
-        dates = list(map(lambda t: t[0], data))
-        weights = list(map(lambda t: t[1].lbs, data))
+        dates = [date for date, _ in data]
+        weights = [weight.lbs for _, weight in data]
         plt.plot(dates, weights)
         plt.show()
+        # TODO somehow fix bug where plot cannot close
 
     def run(self):
         '''Start the WeightTracker application'''
         while True:
             match give_options(['New Entry', 'Show Graph', 'Exit'])[0]:
                 case 0: self.new_entry()
-                case 1: self.show_graph()
+                case 1: self.show_graph(); return
                 case 2: return
 
 def main():
