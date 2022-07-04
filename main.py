@@ -55,6 +55,10 @@ class WeightTracker:
         dates = [date for date, _ in data]
         weights = [weight.lbs for _, weight in data]
         plt.plot(dates, weights)
+        plt.xlabel('Date')
+        plt.ylabel('Weight')
+        plt.title('Weight')
+        plt.xticks(rotation = 25)
         plt.show()
         # TODO somehow fix bug where plot cannot close
 
